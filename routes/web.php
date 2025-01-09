@@ -3,6 +3,7 @@
 use App\Http\Controllers\homepage;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Vacation;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/vacations', function () {
+        $vacations = Vacation::all(); // Haal alle vakanties op uit de database
+        return view('book-vacations', compact('vacations')); // Stuur de data naar de view
+    });    
 });
 
 require __DIR__.'/auth.php';

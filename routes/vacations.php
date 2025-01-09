@@ -1,23 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Vacation;
 
 // Lijst met vakanties
 Route::get('/', function () {
-    $vacations = [
-        [
-            'title' => 'Zonvakantie naar Spanje',
-            'description' => 'Geniet van de zon en de zee in Spanje.',
-            'group_size' => 15,
-            'current_participants' => 4,
-        ],
-        [
-            'title' => 'Skiën in Oostenrijk',
-            'description' => 'Prachtige pistes en après-ski plezier.',
-            'group_size' => 20,
-            'current_participants' => 6,
-        ],
-    ];
+    $vacations = Vacation::all(); // Haal vakanties op uit de database
     return view('book-vacations', compact('vacations'));
 })->name('vacations.index');
 
@@ -27,24 +15,22 @@ Route::get('/create', function() {
 })->name('vacation.create');
 
 // Opslaan van een nieuwe vakantie
-Route::post('/', function(Illuminate\Http\request $request) {
+Route::post('/', function(Illuminate\Http\Request $request) {
     $data = $request->validate([
         'title' => 'required|string|max:255',
         'description' => 'required|string',
         'group_size' => 'required|integer|min:1',
     ]);
-    // Opslaan in database
-    //
+
+    // Sla de vakantie op in de database
+    Vacation::create($data);
+
+    // Redirect naar de vakantielijst
+    return redirect()->route('vacations.index');
 })->name('vacation.store');
 
 // Details van een specifieke vakantie
 Route::get('/{id}', function ($id) {
-    $vacation = [
-        'id' => $id,
-        'title' => 'Voorbeeldvakantie',
-        'description' => 'Beschrijving van de voorbeeldvakantie.',
-        'group_size' => 10,
-        'current_participants' => 4,
-    ];
+    $vacation = Vacation::findOrFail($id); // Zoek vakantie op ID
     return view('show-vacation', compact('vacation'));
 })->name('vacations.show');
