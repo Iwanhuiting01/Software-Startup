@@ -17,7 +17,7 @@
 
         <!-- Category Name -->
             <div class="mb-4">
-                <x-input-label for="name" :value="__('Category Name')" />
+                <x-input-label for="name" :value="__('Category naam')" />
                 <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required />
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
@@ -25,7 +25,7 @@
             <!-- Submit Button -->
             <div class="flex w-full justify-end">
                 <x-primary-button class="w-full text-center flex justify-center">
-                    {{ __('Save Category') }}
+                    {{ __('Categorie toevoegen') }}
                 </x-primary-button>
             </div>
         </form>

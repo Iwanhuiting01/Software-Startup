@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mx-auto py-6">
+    <div class="container mt-10 mx-auto py-6">
         <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
             <!-- Vacation Image -->
             <img src="{{ asset($vacation->image) }}" alt="{{ $vacation->title }}" class="w-full h-64 object-cover">
@@ -54,7 +54,7 @@
             <!-- Actions -->
                 <div class="flex justify-between mt-6">
                     <a href="{{ route('vacations.index') }}" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400">
-                        Terug
+                        Vakantie overzicht
                     </a>
                     <button class="bg-blue-500 text-white px-4 py-2 ml-4 rounded hover:bg-blue-600">
                         Boek Nu

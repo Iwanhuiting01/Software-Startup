@@ -34,7 +34,7 @@ class VacationsController extends Controller
             'price' => 'required|numeric|min:0',
             'start_date' => 'required|date|before_or_equal:end_date',
             'end_date' => 'required|date|after_or_equal:start_date',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:4096',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:10000',
             'categories' => 'nullable|array',
             'categories.*' => 'exists:categories,id',
         ]);

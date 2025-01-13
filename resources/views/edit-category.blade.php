@@ -24,9 +24,9 @@
                 <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" value="{{ $category->name }}" required />
             </div>
 
-            <div class="flex justify-end">
-                <x-primary-button class="bg-blue-500 hover:bg-blue-600">
-                    {{ __('Opslaan') }}
+            <div class="flex w-full justify-end">
+                <x-primary-button class="w-full text-center flex justify-center">
+                    {{ __('Categorie aanpassen') }}
                 </x-primary-button>
             </div>
         </form>
