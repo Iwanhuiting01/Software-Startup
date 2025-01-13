@@ -11,7 +11,7 @@ class VacationsController extends Controller
     // Display a list of vacations
     public function index()
     {
-        $vacations = Vacation::all(); // Haal vakanties op uit de database
+        $vacations = Vacation::all()->reverse(); // Haal vakanties op uit de database
         return view('book-vacations', compact('vacations'));
     }
 
