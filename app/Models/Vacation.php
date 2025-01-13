@@ -9,5 +9,27 @@ class Vacation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'group_size', 'current_participants'];
+    protected $fillable = [
+        'title',
+        'description',
+        'long_description',
+        'price',
+        'start_date',
+        'end_date',
+        'max_group_size',
+        'min_group_size',
+        'current_participants',
+        'image',
+        'user_id',
+    ];
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'category_vacation');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

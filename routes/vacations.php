@@ -14,4 +14,4 @@ Route::get('/create', [VacationsController::class, 'create'])->name('vacation.cr
 Route::post('/', [VacationsController::class, 'store'])->name('vacation.store');
 
 // Details van een specifieke vakantie
-Route::get('/{id}', [VacationsController::class, 'show'])->name('vacations.show');
+Route::get('/{id}', [VacationsController::class, 'show'])->name('vacation.show');

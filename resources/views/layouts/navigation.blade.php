@@ -38,6 +38,16 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
+                        @if(Auth::user()->is_employee)
+                            <x-dropdown-link :href="route('vacation.create')">
+                                Vakantie aanmaken
+                            </x-dropdown-link>
+
+                            <x-dropdown-link :href="route('category.manage')">
+                                Categorie beheer
+                            </x-dropdown-link>
+                        @endif
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
