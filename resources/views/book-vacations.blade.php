@@ -11,6 +11,96 @@
 @endsection
 
 @section('content')
+
+<div class="flex justify-center mt-8">
+        <form method="GET" action="{{ route('vacations.index') }}" class="flex">
+            <input
+                type="text"
+                name="search"
+                placeholder="Zoek vakanties..."
+                value="{{ $query ?? '' }}"
+                class="border border-gray-300 rounded-l-md p-2 w-96 focus:ring focus:ring-blue-200"
+            />
+            <button
+                type="submit"
+                class="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 focus:ring focus:ring-blue-300"
+            >
+                Zoeken
+            </button>
+        </form>
+    </div>
+
+    <div class="bg-gray-100 min-h-screen">
+    <!-- Filter Form -->
+    <div class="flex justify-center mt-8">
+        <form method="GET" action="{{ route('vacations.index') }}" class="flex flex-col md:flex-row gap-4">
+
+            <!-- Bestemming -->
+            <select
+                name="destination"
+                class="border border-gray-300 rounded-md p-2 w-64 focus:ring focus:ring-blue-200"
+            >
+                <option value="">Kies een bestemming</option>
+                <option value="Spanje" {{ request('destination') == 'Spanje' ? 'selected' : '' }}>Spanje</option>
+                <option value="Oostenrijk" {{ request('destination') == 'Oostenrijk' ? 'selected' : '' }}>Oostenrijk</option>
+                <option value="Rome" {{ request('destination') == 'Rome' ? 'selected' : '' }}>Rome</option>
+            </select>
+
+            <!-- Prijsrange -->
+            <div class="flex gap-2">
+                <input
+                    type="number"
+                    name="min_price"
+                    placeholder="Min prijs"
+                    value="{{ request('min_price') }}"
+                    class="border border-gray-300 rounded-md p-2 w-28 focus:ring focus:ring-blue-200"
+                />
+                <input
+                    type="number"
+                    name="max_price"
+                    placeholder="Max prijs"
+                    value="{{ request('max_price') }}"
+                    class="border border-gray-300 rounded-md p-2 w-28 focus:ring focus:ring-blue-200"
+                />
+            </div>
+
+            <!-- Datumfilters -->
+            <div class="flex gap-2">
+                <input
+                    type="date"
+                    name="start_date"
+                    value="{{ request('start_date') }}"
+                    class="border border-gray-300 rounded-md p-2 w-36 focus:ring focus:ring-blue-200"
+                />
+                <input
+                    type="date"
+                    name="end_date"
+                    value="{{ request('end_date') }}"
+                    class="border border-gray-300 rounded-md p-2 w-36 focus:ring focus:ring-blue-200"
+                />
+            </div>
+
+            <!-- Filterknop -->
+            <button
+                type="submit"
+                class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:ring focus:ring-blue-300"
+            >
+                Filteren
+            </button>
+        </form>
+    </div>
+
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        @forelse($vacations as $vacation)
+            <div class="bg-white shadow-md rounded-md overflow-hidden">
+                <h3>{{ $vacation->name }}</h3>
+            </div>
+        @empty
+            <p>Geen vakanties gevonden voor "{{ request('search') }}"</p>
+        @endforelse
+    </div>
+
     <div class="container mx-auto p-6 text-gray-800 max-w-screen-lg">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-screen-lg mx-auto">
             @foreach ($vacations as $vacation)
