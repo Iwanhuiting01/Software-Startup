@@ -11,6 +11,8 @@ class VacationsController extends Controller
     // Display a list of vacations
     public function index(Request $request)
 {
+    $destinations = Vacation::select('title')->distinct()->get();
+    
     $query = Vacation::query();
 
     // Zoekterm filteren
@@ -22,9 +24,14 @@ class VacationsController extends Controller
 
     // Filteren op bestemming
     if ($request->has('destination') && $request->destination != '') {
-        $query->where('destination', $request->destination);
+        $query->where('title', $request->destination);
     }
 
+    // Filteren op groepsgrootte
+    if ($request->has('max_group_size') && $request->max_group_size != '') {     
+        $query->where('max_group_size', '>=', $request->max_group_size);
+    }
+    
     // Filteren op prijs
     if ($request->has('min_price') && $request->min_price != '') {
         $query->where('price', '>=', $request->min_price);
@@ -43,9 +50,12 @@ class VacationsController extends Controller
         $query->where('end_date', '<=', $request->end_date);
     }
 
+    
+
+
     $vacations = $query->get();
 
-    return view('book-vacations', compact('vacations'));
+    return view('book-vacations', compact('vacations', 'destinations'));
 }
 
 

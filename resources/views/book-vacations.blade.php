@@ -41,9 +41,11 @@
                 class="border border-gray-300 rounded-md p-2 w-64 focus:ring focus:ring-blue-200"
             >
                 <option value="">Kies een bestemming</option>
-                <option value="Spanje" {{ request('destination') == 'Spanje' ? 'selected' : '' }}>Spanje</option>
-                <option value="Oostenrijk" {{ request('destination') == 'Oostenrijk' ? 'selected' : '' }}>Oostenrijk</option>
-                <option value="Rome" {{ request('destination') == 'Rome' ? 'selected' : '' }}>Rome</option>
+                @foreach($destinations as $destination)
+                    <option value="{{ $destination->title }}" {{ request('destination') == $destination->title ? 'selected' : '' }}>
+                        {{ $destination->title }}
+                    </option>
+                @endforeach
             </select>
 
             <!-- Prijsrange -->
@@ -63,6 +65,15 @@
                     class="border border-gray-300 rounded-md p-2 w-28 focus:ring focus:ring-blue-200"
                 />
             </div>
+
+            <!-- Groepsgrootte filter -->
+            <input
+                type="number"
+                name="max_group_size"
+                placeholder="max groepsgrootte"
+                value="{{ request('max_group_size') }}"
+                class="border border-gray-300 rounded-md p-2 w-48 focus:ring focus:ring-blue-200"
+            />
 
             <!-- Datumfilters -->
             <div class="flex gap-2">
@@ -118,6 +129,7 @@
                         <!-- Groepsinformatie -->
                         <p class="text-sm text-gray-500">
                             Vereiste groepsgrootte: <strong>{{ $vacation->min_group_size }}</strong><br>
+                            Maximale groepsgrootte: <strong>{{ $vacation->max_group_size }}</strong><br>
                             Aantal deelnemers: <strong>{{ $vacation->current_participants }}</strong>
                         </p>
 

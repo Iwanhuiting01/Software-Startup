@@ -21,6 +21,7 @@ class Vacation extends Model
         'current_participants',
         'image',
         'user_id',
+        'destination'
     ];
 
     public function categories()
