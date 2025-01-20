@@ -3,6 +3,7 @@
 use App\Http\Controllers\VacationsController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Vacation;
+use App\Http\Controllers\BookingController;
 
 
 Route::middleware('auth')->group(function () {
@@ -17,5 +18,11 @@ Route::middleware('auth')->group(function () {
 
     // Details van een specifieke vakantie
     Route::get('/{id}', [VacationsController::class, 'show'])->name('vacation.show');
+
+    Route::get('/{vacation}/book', [BookingController::class, 'create'])->name('bookings.create');
+
+    Route::post('/{vacation}/book', [BookingController::class, 'store'])->name('bookings.store');
+
+
 
 });

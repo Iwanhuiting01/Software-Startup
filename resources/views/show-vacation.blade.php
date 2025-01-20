@@ -24,7 +24,7 @@
                     <p class="text-sm text-gray-500">
                         <strong>Minimum Groepsgrootte:</strong> {{ $vacation->min_group_size }}<br>
                         <strong>Maximum Groepsgrootte:</strong> {{ $vacation->max_group_size }}<br>
-                        <strong>Deelnemers:</strong> {{ $vacation->current_participants }}
+                        <strong>Deelnemers:</strong> {{ $vacation->currentParticipants() }}
                     </p>
                 </div>
 
@@ -56,9 +56,9 @@
                     <a href="{{ route('vacations.index') }}" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400">
                         Vakantie overzicht
                     </a>
-                    <button class="bg-blue-500 text-white px-4 py-2 ml-4 rounded hover:bg-blue-600">
+                    <a href="{{ route('bookings.create', $vacation->id) }}" class="bg-blue-500 text-white px-4 py-2 ml-4 rounded hover:bg-blue-600">
                         Boek Nu
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

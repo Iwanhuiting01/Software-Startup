@@ -33,4 +33,21 @@ class Vacation extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
+    public function remainingSlots()
+    {
+        // Calculate the remaining slots by subtracting current bookings from the max group size
+        return $this->max_group_size - $this->bookings()->count();
+    }
+
+    public function currentParticipants()
+    {
+        // Count the total bookings for this vacation
+        return $this->bookings()->count();
+    }
 }
