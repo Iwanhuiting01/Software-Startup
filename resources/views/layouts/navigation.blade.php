@@ -45,6 +45,10 @@
                             {{ __('Profiel') }}
                         </x-dropdown-link>
 
+                        <x-dropdown-link :href="route('bookings.manage')">
+                            Boekingen beheren
+                        </x-dropdown-link>
+
                         @if(Auth::user()->is_employee)
                             <x-dropdown-link :href="route('vacation.create')">
                                 Vakantie aanmaken
