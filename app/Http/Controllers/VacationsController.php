@@ -9,11 +9,55 @@ use App\Models\Vacation;
 class VacationsController extends Controller
 {
     // Display a list of vacations
-    public function index()
-    {
-        $vacations = Vacation::all()->reverse(); // Haal vakanties op uit de database
-        return view('book-vacations', compact('vacations'));
+    public function index(Request $request)
+{
+    $destinations = Vacation::select('title')->distinct()->get();
+    
+    $query = Vacation::query();
+
+    // Zoekterm filteren
+    if ($request->has('search') && $request->search != '') {
+        $query->where('title', 'like', '%' . $request->search . '%')
+              ->orWhere('description', 'like', '%' . $request->search . '%')
+              ->orWhere('destination', 'like', '%' . $request->search . '%');
     }
+
+    // Filteren op bestemming
+    if ($request->has('destination') && $request->destination != '') {
+        $query->where('title', $request->destination);
+    }
+
+    // Filteren op groepsgrootte
+    if ($request->has('max_group_size') && $request->max_group_size != '') {     
+        $query->where('max_group_size', '>=', $request->max_group_size);
+    }
+    
+    // Filteren op prijs
+    if ($request->has('min_price') && $request->min_price != '') {
+        $query->where('price', '>=', $request->min_price);
+    }
+
+    if ($request->has('max_price') && $request->max_price != '') {
+        $query->where('price', '<=', $request->max_price);
+    }
+
+    // Filteren op datum
+    if ($request->has('start_date') && $request->start_date != '') {
+        $query->where('start_date', '>=', $request->start_date);
+    }
+
+    if ($request->has('end_date') && $request->end_date != '') {
+        $query->where('end_date', '<=', $request->end_date);
+    }
+
+    
+
+
+    $vacations = $query->get();
+
+    return view('book-vacations', compact('vacations', 'destinations'));
+}
+
 
     // Show the form to create a new vacation
     public function create()
