@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\homepage;
 use App\Http\Controllers\ProfileController;
@@ -37,6 +38,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
     Route::post('/category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
 
+    Route::get('/bookings/manage', [BookingController::class, 'manage'])->name('bookings.manage');
+
+    Route::get('/bookings/{booking}/pay', [BookingController::class, 'pay'])->name('bookings.pay');
+
+    Route::post('/bookings/{booking}/confirm-payment', [BookingController::class, 'confirmPayment'])->name('bookings.confirm-payment');
 });
 
 require __DIR__.'/auth.php';

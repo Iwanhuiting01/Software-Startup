@@ -28,7 +28,7 @@
                         <!-- Groepsinformatie -->
                         <p class="text-sm text-gray-500">
                             Vereiste groepsgrootte: <strong>{{ $vacation->min_group_size }}</strong><br>
-                            Aantal deelnemers: <strong>{{ $vacation->current_participants }}</strong>
+                            Aantal deelnemers: <strong>{{ $vacation->currentParticipants() }}</strong>
                         </p>
 
                         <!-- Tags (categories) -->
