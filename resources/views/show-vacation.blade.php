@@ -42,14 +42,19 @@
                     <div class="mb-4">
                         <h2 class="text-lg font-semibold mb-2">Categorieën</h2>
                         <div class="flex flex-wrap gap-2">
-                            @foreach ($vacation->categories as $category)
-                                <span class="bg-blue-100 text-blue-700 text-sm px-3 py-1 rounded-full">
-                                    {{ $category->name }}
-                                </span>
-                            @endforeach
+                            @if($vacation->categories)
+                                <div class="flex flex-wrap gap-2">
+                                    @foreach ($vacation->categories as $category)
+                                        <a href="{{ route('vacations.index', ['category' => $category->id]) }}"
+                                           class="bg-blue-100 text-blue-700 text-sm px-3 py-1 rounded-full hover:bg-blue-200">
+                                            {{ $category->name }}
+                                        </a>
+                                    @endforeach
+                                </div>
+                            @endif
                         </div>
                     </div>
-            @endif
+                @endif
 
             <!-- Actions -->
                 <div class="flex justify-between mt-6">

@@ -48,6 +48,18 @@
                 @endforeach
             </select>
 
+            <select
+                name="category"
+                class="border border-gray-300 rounded-md p-2 w-64 focus:ring focus:ring-blue-200"
+            >
+                <option value="">Kies een tag</option>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
+                        {{ $category->name }}
+                    </option>
+                @endforeach
+            </select>
+
             <!-- Prijsrange -->
             <div class="flex gap-2">
                 <input
@@ -135,13 +147,14 @@
 
                         <!-- Tags (categories) -->
                         @if($vacation->categories)
-                        <div class="flex flex-wrap gap-2 mt-3">
-                            @foreach ($vacation->categories as $category)
-                                <span class="bg-blue-100 text-blue-700 text-sm px-3 py-1 rounded-full">
-                                {{ $category->name }}
-                            </span>
-                            @endforeach
-                        </div>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                @foreach ($vacation->categories as $category)
+                                    <a href="{{ route('vacations.index', ['category' => $category->id]) }}"
+                                       class="bg-blue-100 text-blue-700 text-sm px-3 py-1 rounded-full hover:bg-blue-200">
+                                        {{ $category->name }}
+                                    </a>
+                                @endforeach
+                            </div>
                         @endif
 
                         <!-- Spacer to push buttons to the bottom -->

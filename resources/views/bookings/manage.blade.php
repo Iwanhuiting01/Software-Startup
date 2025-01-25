@@ -26,7 +26,9 @@
                                 <!-- Left Section: Vacation Details -->
                                 <div class="flex flex-col justify-between h-full">
                                     <div>
-                                        <h2 class="text-xl font-bold mb-2">{{ $booking->vacation->title }}</h2>
+                                        <a class="hover:text-gray-600" href="{{ route('vacation.show', ['id' => $booking->vacation->id]) }}">
+                                            <h2 class="text-xl font-bold mb-2">{{ $booking->vacation->title }}</h2>
+                                        </a>
                                         <p class="text-gray-700">
 
                                             <strong>Prijs:</strong> €{{ number_format($booking->vacation->price, 2, ',', '.') }}<br>

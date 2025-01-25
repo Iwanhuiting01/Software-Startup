@@ -46,12 +46,12 @@
                         </x-dropdown-link>
 
                         <x-dropdown-link :href="route('bookings.manage')">
-                            Boekingen beheren
+                            Mijn boekingen
                         </x-dropdown-link>
 
                         @if(Auth::user()->is_employee)
-                            <x-dropdown-link :href="route('vacation.create')">
-                                Vakantie aanmaken
+                            <x-dropdown-link :href="route('vacations.manage')">
+                                Vakantie beheer
                             </x-dropdown-link>
 
                             <x-dropdown-link :href="route('category.manage')">
