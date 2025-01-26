@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vacation;
 use Illuminate\Http\Request;
 
 class homepage extends Controller
@@ -10,7 +11,8 @@ class homepage extends Controller
 
     public function Homepage()
     {
-        // Redirect to a named route
-        return view('homepage');
+        $featuredVacations = Vacation::inRandomOrder()->limit(3)->get();
+
+        return view('homepage', compact('featuredVacations'));
     }
 }

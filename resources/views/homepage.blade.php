@@ -55,16 +55,6 @@
                             </p>
                         </div>
 
-                        <div class="bg-gray-100 p-6 rounded-lg shadow-md text-center my-8">
-                            <h2 class="text-2xl font-bold mb-4">Onze missie</h2>
-                            <p class="text-gray-700">
-                                Bij Dealtrip is het onze missie om iedereen een goede vakantie aan te kunnen bieden.
-                                Voor ons is het belangrijk dat iedereen op vakantie kan, zonder zich zorgen te hoeven maken over hun budget.
-                                Wij vinden dat iedereen moet kunnen genieten van een leuke vakantie, wie ze ook zijn.
-                                Daarom streven wij ernaar om diverse vakanties aan te bieden, om voor iedereen een reis te hebben.
-                            </p>
-                        </div>
-
                         <!-- See All Vacations Button -->
                         <div class="flex justify-center">
                             <a href="{{ route('vacations.index') }}" class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition">

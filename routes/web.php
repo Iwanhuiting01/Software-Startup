@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\homepage;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -18,14 +19,24 @@ use App\Models\Vacation;
 
 Route::get('/', [homepage::class, 'Homepage'])->middleware(['auth', 'verified'])->name('dashboard');
 
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/vacations', function () {
-        $vacations = Vacation::all(); // Haal alle vakanties op uit de database
-        return view('book-vacations', compact('vacations')); // Stuur de data naar de view
-    });    
+
+
+    Route::get('/categories/create', [CategoryController::class, 'create'])->name('category.create');
+    Route::post('/categories/create', [CategoryController::class, 'store'])->name('category.store');
+
+    Route::get('/categories', [CategoryController::class, 'manage'])->name('category.manage');
+
+    Route::post('/category/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
+
+    Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::post('/category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
+
 });
 
 require __DIR__.'/auth.php';
