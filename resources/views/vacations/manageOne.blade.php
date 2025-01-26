@@ -2,6 +2,12 @@
 
 @section('content')
     <div class="container mt-10 mx-auto py-6">
+        @if(session('success'))
+            <div class="bg-green-100 text-green-700 p-3 rounded mb-4">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <div class="flex justify-between items-center mb-6">
             <h1 class="text-3xl font-bold">Beheer vakantie: {{ $vacation->title }}</h1>
             <div class="flex gap-4">

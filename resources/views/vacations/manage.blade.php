@@ -4,6 +4,12 @@
     <div class="container mt-10 mx-auto py-6">
         <h1 class="text-3xl font-bold mb-6">Beheer jouw vakanties</h1>
 
+        @if(session('success'))
+            <div class="bg-green-100 text-green-700 p-3 rounded mb-4">
+                {{ session('success') }}
+            </div>
+        @endif
+
         @if($vacations->isEmpty())
             <p class="text-gray-600">Je hebt nog geen vakanties aangemaakt.</p>
         @else

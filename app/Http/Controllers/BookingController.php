@@ -78,4 +78,20 @@ class BookingController extends Controller
 
         return redirect()->route('bookings.manage')->with('success', 'Betaling voltooid!');
     }
+
+    public function cancel($id)
+    {
+        $booking = Booking::findOrFail($id);
+
+        // Ensure only the booking owner can cancel
+        if ($booking->user_id !== auth()->id()) {
+            abort(403, 'Je hebt geen toestemming om deze boeking te annuleren.');
+        }
+
+        // Update the is_cancelled flag
+        $booking->is_cancelled = true;
+        $booking->save();
+
+        return redirect()->route('bookings.manage')->with('success', 'Boeking succesvol geannuleerd.');
+    }
 }
