@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
 
     Route::get('/bookings/manage', [BookingController::class, 'manage'])->name('bookings.manage');
+    Route::put('/bookings/{id}/cancel', [BookingController::class, 'cancel'])->name('bookings.cancel');
 
     Route::get('/bookings/{booking}/pay', [BookingController::class, 'pay'])->name('bookings.pay');
 

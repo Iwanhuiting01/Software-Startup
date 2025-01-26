@@ -19,6 +19,7 @@ class Booking extends Model
         'email',
         'price',
         'amount_paid',
+        'is_cancelled',
     ];
 
     public function user()
