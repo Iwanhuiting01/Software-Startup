@@ -3,7 +3,7 @@
 @section('content')
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden sm:rounded-lg shadow-lg">
+            <div class="bg-white overflow-hidden sm:rounded-lg shadow-lg col-md-2 col-2">
                 <div class="p-6 text-gray-900">
                     <div class="container mx-auto p-6 max-w-screen-lg">
                         <!-- Page Title -->
@@ -52,6 +52,16 @@
                                 Dealtrip is de perfecte plek om jouw volgende groepsvakantie te plannen!
                                 Ontdek een breed aanbod van vakanties voor elk type reiziger, met unieke bestemmingen,
                                 geweldige prijzen, en een gebruiksvriendelijke ervaring. Vind je perfecte reis vandaag nog!
+                            </p>
+                        </div>
+
+                        <div class="bg-gray-100 p-6 rounded-lg shadow-md text-center my-8">
+                            <h2 class="text-2xl font-bold mb-4">Onze missie</h2>
+                            <p class="text-gray-700">
+                                Bij Dealtrip is het onze missie om iedereen een goede vakantie aan te kunnen bieden.
+                                Voor ons is het belangrijk dat iedereen op vakantie kan, zonder zich zorgen te hoeven maken over hun budget.
+                                Wij vinden dat iedereen moet kunnen genieten van een leuke vakantie, wie ze ook zijn.
+                                Daarom streven wij ernaar om diverse vakanties aan te bieden, om voor iedereen een reis te hebben.
                             </p>
                         </div>
 
