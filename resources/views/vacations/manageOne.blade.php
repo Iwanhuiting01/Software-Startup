@@ -80,7 +80,7 @@
                                 <td class="border border-gray-300 px-4 py-2">
                                     {{ $booking->first_name }} {{ $booking->middle_name }} {{ $booking->last_name }}
                                 </td>
-                                <td class="border border-gray-300 px-4 py-2">{{ $booking->email }}</td>
+                                <td class="border border-gray-300 px-4 py-2"><a href="mailto:{{$booking->email}}">{{ $booking->email }}</a></td>
                                 <td class="border border-gray-300 px-4 py-2">{{ $booking->date_of_birth }}</td>
                                 <td class="border border-gray-300 px-4 py-2">€{{ number_format($booking->amount_paid, 2) }}</td>
                                 <td class="border border-gray-300 px-4 py-2">€{{ number_format($booking->price, 2) }}</td>

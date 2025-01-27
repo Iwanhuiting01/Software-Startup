@@ -10,7 +10,7 @@ class CategoryController extends Controller
     // Show the form to create a new category
     public function create()
     {
-        return view('create-category');
+        return view('category.create');
     }
 
     // Store a new category in the database
@@ -31,7 +31,7 @@ class CategoryController extends Controller
     public function manage()
     {
         $categories = Category::all();
-        return view('category-management', compact('categories'));
+        return view('category.management', compact('categories'));
     }
 
     // Delete a category
@@ -51,7 +51,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-        return view('edit-category', compact('category'));
+        return view('category.edit', compact('category'));
     }
 
     public function update(Request $request, $id)
