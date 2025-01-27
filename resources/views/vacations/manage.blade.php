@@ -2,8 +2,12 @@
 
 @section('content')
     <div class="container mt-10 mx-auto py-6">
-        <h1 class="text-3xl font-bold mb-6">Beheer jouw vakanties</h1>
-
+        <div class="flex items-center justify-between mb-6">
+            <h1 class="text-3xl font-bold">Beheer jouw vakanties</h1>
+            <a href="{{ route('vacation.create') }}" class="bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition">
+                Nieuwe Vakantie
+            </a>
+        </div>
         @if(session('success'))
             <div class="bg-green-100 text-green-700 p-3 rounded mb-4">
                 {{ session('success') }}
