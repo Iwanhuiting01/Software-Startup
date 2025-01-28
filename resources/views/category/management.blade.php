@@ -4,7 +4,7 @@
     <div class="container mx-auto py-6 my-10">
         <div class="flex items-center justify-between mb-4">
             <h1 class="text-2xl font-bold">Categorieën Beheer</h1>
-            <a href="{{ route('category.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+            <a href="{{ route('category.create') }}" class="bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition">
                 Categorie aanmaken
             </a>
         </div>

@@ -4,6 +4,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\homepage;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VacationsController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Vacation;
 
@@ -18,7 +19,7 @@ use App\Models\Vacation;
 |
 */
 
-Route::get('/', [homepage::class, 'Homepage'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', [VacationsController::class, 'Homepage'])->middleware(['auth', 'verified'])->name('dashboard');
 
 
 

@@ -8,6 +8,24 @@ use App\Models\Vacation;
 
 class VacationsController extends Controller
 {
+    public function homepage()
+    {
+        // Fetch featured vacations (existing functionality)
+        $featuredVacations = Vacation::where('is_closed', false)
+            ->orderByDesc('created_at')
+            ->take(5) // Adjust as necessary
+            ->get();
+
+        // Fetch the 4 most recently booked vacations
+        $recentlyBookedVacations = Vacation::withCount('bookings')
+            ->where('is_closed', false)
+            ->orderByDesc('bookings_count')
+            ->take(4)
+            ->get();
+
+        return view('homepage', compact('featuredVacations', 'recentlyBookedVacations'));
+    }
+
     // Display a list of vacations
     public function index(Request $request)
     {
@@ -64,7 +82,7 @@ class VacationsController extends Controller
 
         $vacations = $query->get();
 
-        return view('book-vacations', compact('vacations', 'destinations', 'categories'));
+        return view('vacations.book', compact('vacations', 'destinations', 'categories'));
     }
 
 
@@ -72,7 +90,7 @@ class VacationsController extends Controller
     public function create()
     {
         $categories = Category::all(); // Fetch all categories
-        return view('create-vacation', compact('categories'));
+        return view('vacations.create', compact('categories'));
     }
 
     // Show the form to create a new vacation
@@ -165,7 +183,7 @@ class VacationsController extends Controller
     public function show($id)
     {
         $vacation = Vacation::findOrFail($id); // Zoek vakantie op ID
-        return view('show-vacation', compact('vacation'));
+        return view('vacations.show', compact('vacation'));
     }
 
     // Display details of a specific vacation

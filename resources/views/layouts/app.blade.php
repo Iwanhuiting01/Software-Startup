@@ -14,9 +14,27 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <style>
+            /* Ensure the full height is utilized */
+            html, body {
+                height: 100%;
+                margin: 0; /* Remove default margins */
+            }
+
+            body {
+                display: flex;
+                flex-direction: column;
+                min-height: 100%; /* Ensure the body takes the full height */
+            }
+
+            main {
+                flex: 1; /* Push the footer to the bottom */
+            }
+        </style>
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+        <div class="bg-gray-100 flex flex-col min-h-full">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
@@ -28,13 +46,34 @@
                 </header>
             @endif
 
-
             @yield('header')
 
             <!-- Page Content -->
-            <main>
+            <main class="bg-gray-100">
                 @yield('content')
             </main>
+
+            <!-- Footer Section -->
+            <div class="bg-gray-100">
+                <footer class="bg-gray-800 text-white p-6 mt-12">
+                    <div class="container mx-auto flex flex-wrap justify-between">
+                        <div class="w-full md:w-1/3 mb-6 md:mb-0">
+                            <h3 class="font-bold text-lg mb-4">Contact</h3>
+                            <p>Email: info@dealtrip.nl</p>
+                            <p>Telefoon: +31 6 12345678</p>
+                        </div>
+                        <div class="w-full md:w-1/3 mb-6 md:mb-0">
+                            <h3 class="font-bold text-lg mb-4">Volg ons</h3>
+                            <p><a href="#" class="hover:underline">Instagram</a></p>
+                            <p><a href="#" class="hover:underline">TikTok</a></p>
+                        </div>
+                        <div class="w-full md:w-1/3">
+                            <h3 class="font-bold text-lg mb-4">Over DealTrip</h3>
+                            <p>Wij bieden betaalbare groepsvakanties waarmee je kunt netwerken, nieuwe vrienden kunt maken en onvergetelijke herinneringen kunt creëren!</p>
+                        </div>
+                    </div>
+                </footer>
+            </div>
         </div>
     </body>
 </html>
